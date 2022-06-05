@@ -4,16 +4,16 @@ import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 import MetaInfo from "components/MetaInfo/MetaInfo";
 import Vote from "components/Vote/Vote";
-import AboutQuestion from "components/Aanalytics/AboutQuestion";
-const Question = ({ data, votes }) => {
+
+const Answer = ({ data, votes }) => {
   return (
     <>
-      <h1 className="text-bold">{data?.title}</h1>
-      <AboutQuestion />
-      <hr />
       <Row>
         <Col md="1">
           <Vote votes={votes} />
+          <p className="m-2 text-success">
+            <i className="ni ni-check-bold"></i>
+          </p>
         </Col>
         <Col md="11">
           <ReactMarkdown children={data?.body} />
@@ -24,7 +24,7 @@ const Question = ({ data, votes }) => {
     </>
   );
 };
-Question.defaultProps = {
+Answer.defaultProps = {
   votes: {
     count: 0,
     upButton: {
@@ -38,7 +38,7 @@ Question.defaultProps = {
   },
 };
 
-Question.propTypes = {
+Answer.propTypes = {
   votes: PropTypes.shape({
     count: PropTypes.number.isRequired,
     upButton: PropTypes.shape({
@@ -51,9 +51,9 @@ Question.propTypes = {
     }),
   }),
   data: PropTypes.shape({
-    title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
   }),
+  isAccepted: PropTypes.bool,
 };
 
-export default Question;
+export default Answer;

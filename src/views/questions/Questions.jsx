@@ -12,7 +12,7 @@ import {
   Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { questions } from "./questions";
+import { questions } from "../data/questionsData";
 const Questions = () => {
   return (
     <>
@@ -23,7 +23,7 @@ const Questions = () => {
           </Col>
           <Col md="6">
             <p className="text-md-right text-bold">
-              <Link to="/admin/qustions">
+              <Link to="/admin/ask">
                 <Button color="primary">Ask a question ?</Button>
               </Link>
             </p>

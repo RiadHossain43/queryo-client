@@ -1,7 +1,7 @@
 import Questions from "views/questions/Questions";
 import Login from "views/auth/Login";
 import Editor from "views/editor/Editor";
-import QuestionDetails from "views/questions/QuestionDetails";
+import Discussions from "views/discussions/Discussions";
 var routes = [
   {
     path: "/questions",
@@ -12,9 +12,9 @@ var routes = [
   },
   {
     path: "/questions/:id",
-    name: "Editor",
+    name: "Discusions",
     icon: "ni ni-key-25",
-    component: QuestionDetails,
+    component: Discussions,
     layout: "/admin",
     sideDeactivate: true,
   },
