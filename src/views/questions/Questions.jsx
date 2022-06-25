@@ -40,7 +40,7 @@ const Questions = () => {
               <CardText>{question?.body}</CardText>
               <CardText>
                 {question?.tags?.map((tag) => (
-                  <small>
+                  <small key={tag}>
                     <Badge color="light" className="mr-1">
                       {tag}
                     </Badge>

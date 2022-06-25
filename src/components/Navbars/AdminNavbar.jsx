@@ -13,6 +13,7 @@ import {
   Container,
   Media,
 } from "reactstrap";
+import FcmNotification from "./FcmNotification";
 
 const AdminNavbar = (props) => {
   return (
@@ -26,14 +27,23 @@ const AdminNavbar = (props) => {
             {props.brandText}
           </Link>
           <Nav className="align-items-center d-none d-md-flex" navbar>
-            {
-              true?
-              <NavItem>
-                <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
-                  <i className="ni ni-key-25" />
-                  <span className="nav-link-inner--text">Login</span>
-                </NavLink>
-              </NavItem>:
+            {true ? (
+              <>
+                <NavItem>
+                  <FcmNotification />
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className="nav-link-icon"
+                    to="/auth/login"
+                    tag={Link}
+                  >
+                    <i className="ni ni-key-25" />
+                    <span className="nav-link-inner--text">Login</span>
+                  </NavLink>
+                </NavItem>
+              </>
+            ) : (
               <UncontrolledDropdown nav>
                 <DropdownToggle className="pr-0" nav>
                   <Media className="align-items-center">
@@ -62,13 +72,16 @@ const AdminNavbar = (props) => {
                     <span>My profile</span>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                  <DropdownItem
+                    href="#pablo"
+                    onClick={(e) => e.preventDefault()}
+                  >
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-            }
+            )}
           </Nav>
         </Container>
       </Navbar>
