@@ -5,6 +5,7 @@ let accessTokenKey = "accessToken";
 http.setJwt(getAccessToken());
 export async function login(data) {
   const { data: jwt } = await http.post(apiEndPoint, {
+    name:"asdasdasdasd",
     email: data.email,
     password: data.password,
   });

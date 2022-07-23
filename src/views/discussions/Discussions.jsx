@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from "react";
 // reactstrap components
 import { Row, Col, Button, Card, CardBody, Container } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Question from "components/Question/Question";
 import Answer from "components/Answer/Answer";
 import Comment from "components/Comment/Comment";
 import { getPost, getPostAnswers } from "services/postServices";
 import { getUser } from "services/userServices";
 import { getCommentsByPost } from "services/commentServices";
+import { deletePost } from "services/postServices";
+import { getAccessTokenData } from "services/authServices";
 const Discussions = (props) => {
   let { id } = props.match.params;
   let [post, setPost] = useState(null);
   let [postAnswers, setPostAnswers] = useState([]);
   let [comments, setComments] = useState([]);
   let [author, setAuthor] = useState(null);
+  let history = useHistory();
+  async function _deletePost() {
+    try {
+      await deletePost(id);
+      history.goBack();
+    } catch (e) {
+      console.log(e);
+    }
+  }
   useEffect(() => {
     async function _getPost() {
       let { data } = await getPost(id);
@@ -76,11 +87,17 @@ const Discussions = (props) => {
                     Add a comment
                   </Button>
                 </Link>
+                {getAccessTokenData()?.nameid.toString() ===
+                  post?.createdBy?.toString() && (
+                  <Button size="sm" className="btn-link" onClick={_deletePost}>
+                    Delete post
+                  </Button>
+                )}
               </p>
             </Col>
           </Row>
           {comments.map((comment) => (
-            <Comment key={comment.id} body={comment.body} />
+            <Comment key={comment.id} data={comment} body={comment.body} />
           ))}
         </Container>
         <h2 className="text-bold my-3">Answers</h2>

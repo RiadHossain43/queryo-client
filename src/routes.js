@@ -4,6 +4,7 @@ import Discussions from "views/discussions/Discussions";
 import Ask from "views/questions/Ask";
 import Ans from "views/answers/Ans";
 import Comment from "views/comments/Comment";
+import Register from "views/auth/Register";
 var routes = [
   {
     path: "/questions",
@@ -49,6 +50,14 @@ var routes = [
     name: "Login",
     icon: "ni ni-key-25",
     component: Login,
+    layout: "/auth",
+    sideDeactivate: true,
+  },
+  {
+    path: "/register",
+    name: "Login",
+    icon: "ni ni-key-25",
+    component: Register,
     layout: "/auth",
     sideDeactivate: true,
   },

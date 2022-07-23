@@ -1,17 +1,18 @@
+import { getAccessTokenData } from "./authServices";
 import http from "./httpServices";
 const apiEndPoint = `/api/Comment`;
 export function createComment(data) {
   return http.post(`${apiEndPoint}/`, {
     body: data.body,
     postId: data.postId,
-    createdBy: data.createdBy,
+    createdBy:  parseInt(getAccessTokenData().nameid),
   });
 }
 export function updateComment(dataId, data) {
   return http.put(`${apiEndPoint}/${dataId}/`, {
     body: data.body,
     postId: data.postId,
-    createdBy: data.createdBy,
+    createdBy: parseInt(getAccessTokenData().nameid),
   });
 }
 export function getComments() {
