@@ -22,7 +22,6 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
 export const getClientToken = (handleTokenFound = () => {}) => {
-  console.log(process.env.REACT_APP_FIREBASE_API_KEY)
   return getToken(messaging, {
     vapidKey: "BOX_2xP0TFswsrwFTeePYpswKgoy8fgwhetS-90twanARSRd0HoIFolMXqQjvWVyPQdKjkTlGcKgCBecfNzsS9Q",
   })
