@@ -1,4 +1,6 @@
+import useForm from "hooks/useForm";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   Card,
@@ -11,7 +13,15 @@ import {
   InputGroup,
   Col,
 } from "reactstrap";
+import { login } from "services/authServices";
+import { defaultAuthDataSet } from "./utils/data";
 const Login = () => {
+  let { dataModel, handleChange, handleSubmit } = useForm(defaultAuthDataSet);
+  let history = useHistory();
+  async function _login() {
+    await login(dataModel.data);
+    history.push("/admin/questions");
+  }
   return (
     <>
       <Col lg="4" md="7">
@@ -32,6 +42,13 @@ const Login = () => {
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
+                    id="email"
+                    onChange={(e) =>
+                      handleChange({
+                        key: "email",
+                        value: e.currentTarget.value,
+                      })
+                    }
                   />
                 </InputGroup>
               </FormGroup>
@@ -46,6 +63,13 @@ const Login = () => {
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
+                    id="password"
+                    onChange={(e) =>
+                      handleChange({
+                        key: "password",
+                        value: e.currentTarget.value,
+                      })
+                    }
                   />
                 </InputGroup>
               </FormGroup>
@@ -54,6 +78,7 @@ const Login = () => {
                   className="btn-block my-5"
                   color="primary"
                   type="button"
+                  onClick={(e) => handleSubmit(e, _login)}
                 >
                   Sign in
                 </Button>

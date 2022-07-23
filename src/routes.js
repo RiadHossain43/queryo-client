@@ -1,7 +1,9 @@
 import Questions from "views/questions/Questions";
 import Login from "views/auth/Login";
-import Editor from "views/editor/Editor";
 import Discussions from "views/discussions/Discussions";
+import Ask from "views/questions/Ask";
+import Ans from "views/answers/Ans";
+import Comment from "views/comments/Comment";
 var routes = [
   {
     path: "/questions",
@@ -22,7 +24,23 @@ var routes = [
     path: "/ask",
     name: "Ask a question",
     icon: "ni ni-sound-wave",
-    component: Editor,
+    component: Ask,
+    layout: "/admin",
+    sideDeactivate: true,
+  },
+  {
+    path: "/ans/:id",
+    name: "Ask a question",
+    icon: "ni ni-sound-wave",
+    component: Ans,
+    layout: "/admin",
+    sideDeactivate: true,
+  },
+  {
+    path: "/comment/post/:id",
+    name: "Ask a question",
+    icon: "ni ni-sound-wave",
+    component: Comment,
     layout: "/admin",
     sideDeactivate: true,
   },

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, CardBody, CardText, Col, Row } from "reactstrap";
 import Avatar from "components/Avatar/Avatar";
+import moment from "moment";
 const MetaInfo = (props) => {
   return (
     <Row>
@@ -23,9 +24,9 @@ const MetaInfo = (props) => {
         <Card className="bg-secondary">
           <CardBody className="p-2">
             <CardText className="mb-2">
-              <small>Asked 12 Jul, 2022 at 14:02</small>
+              <small>Asked {moment(props.askedAt).format("DD/MM/YYYY HH:MM")}</small>
             </CardText>
-            <Avatar imageSrc="..." userName="Riad Hossain" />
+            <Avatar imageSrc="..." userName={props.userName} />
           </CardBody>
         </Card>
       </Col>

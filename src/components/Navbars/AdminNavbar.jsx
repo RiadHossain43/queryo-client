@@ -13,6 +13,8 @@ import {
   Container,
   Media,
 } from "reactstrap";
+import { logout } from "services/authServices";
+import { getAccessTokenData } from "services/authServices";
 import FcmNotification from "./FcmNotification";
 
 const AdminNavbar = (props) => {
@@ -27,7 +29,7 @@ const AdminNavbar = (props) => {
             {props.brandText}
           </Link>
           <Nav className="align-items-center d-none d-md-flex" navbar>
-            {true ? (
+            {!getAccessTokenData() ? (
               <>
                 <NavItem>
                   <FcmNotification />
@@ -58,7 +60,7 @@ const AdminNavbar = (props) => {
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
                       <span className="mb-0 text-sm font-weight-bold">
-                        Riad Hossain
+                        {getAccessTokenData()?.email}
                       </span>
                     </Media>
                   </Media>
@@ -72,10 +74,7 @@ const AdminNavbar = (props) => {
                     <span>My profile</span>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
+                  <DropdownItem href="#pablo" onClick={(e) => logout()}>
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
                   </DropdownItem>

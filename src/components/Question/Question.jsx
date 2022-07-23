@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import MetaInfo from "components/MetaInfo/MetaInfo";
 import Vote from "components/Vote/Vote";
 import AboutQuestion from "components/Aanalytics/AboutQuestion";
-const Question = ({ data, votes }) => {
+const Question = ({ data, votes, metaInfo }) => {
   return (
     <>
       <h1 className="text-bold">{data?.title}</h1>
@@ -20,7 +20,7 @@ const Question = ({ data, votes }) => {
         </Col>
       </Row>
       <hr />
-      <MetaInfo />
+      <MetaInfo askedAt={metaInfo?.askedAt} userName={metaInfo?.userName} />
     </>
   );
 };
