@@ -1,6 +1,6 @@
 import useForm from "hooks/useForm";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Button,
   Card,
@@ -51,7 +51,7 @@ const Register = () => {
                   <Input
                     placeholder="Name"
                     type="text"
-                    autoComplete="new-username"
+                    autoComplete="off"
                     id="name"
                     onChange={(e) =>
                       handleChange({
@@ -72,7 +72,7 @@ const Register = () => {
                   <Input
                     placeholder="Email"
                     type="email"
-                    autoComplete="new-email"
+                    autoComplete="off"
                     id="email"
                     onChange={(e) =>
                       handleChange({
@@ -93,7 +93,7 @@ const Register = () => {
                   <Input
                     placeholder="Password"
                     type="password"
-                    autoComplete="new-password"
+                    autoComplete="off"
                     id="password"
                     onChange={(e) =>
                       handleChange({
@@ -111,9 +111,14 @@ const Register = () => {
                   type="button"
                   onClick={(e) => handleSubmit(e, _register)}
                 >
-                  Sign in
+                  Sign up
                 </Button>
               </div>
+              <Link className="btn-link" to={"/auth/login"}>
+                <Button className="btn-link" size="sm">
+                  Sign in with credentials
+                </Button>
+              </Link>
             </Form>
           </CardBody>
         </Card>

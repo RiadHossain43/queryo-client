@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 import MetaInfo from "components/MetaInfo/MetaInfo";
 import Vote from "components/Vote/Vote";
+import { getUser } from "services/userServices";
 
-const Answer = ({ data, votes }) => {
+const Answer = ({ data: answer, votes }) => {
+  let [author, setAuthor] = useState(null);
+  useEffect(() => {
+    async function _getAuthor() {
+      let { data } = await getUser(answer?.createdBy);
+      setAuthor(data);
+    }
+    _getAuthor();
+  }, [answer?.createdBy]);
   return (
     <>
       <Row>
@@ -16,11 +25,11 @@ const Answer = ({ data, votes }) => {
           </p>
         </Col>
         <Col md="11">
-          <ReactMarkdown children={data?.body} />
+          <ReactMarkdown children={answer?.body} />
         </Col>
       </Row>
       <hr />
-      <MetaInfo />
+      <MetaInfo userName={author?.name} />
     </>
   );
 };
